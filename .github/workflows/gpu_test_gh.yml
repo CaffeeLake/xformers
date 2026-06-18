@@ -20,6 +20,7 @@ env:
   XFORMERS_BUILD_TYPE: "Release"
   CI: "1"
   TORCHINDUCTOR_COMPILE_THREADS: "1"
+  MSLK_PYTHON_ONLY: "1"
 
 jobs:
   gpu_test_gh:
@@ -60,7 +61,7 @@ jobs:
           micromamba config set channel_priority strict
           micromamba create -n env python=${{ matrix.python }} \
             zlib pip ninja ccache=4.8 cuda-toolkit \
-            -c "nvidia/label/cuda-12.6" -c conda-forge -q -y
+            -c "nvidia/label/cuda-12.6.1" -c conda-forge -q -y
       - name: Activate environment
         shell: bash -l {0}
         run: |
